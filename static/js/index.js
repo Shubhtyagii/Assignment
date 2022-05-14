@@ -100,8 +100,43 @@ $(document).ready(function(){
         TYPE = 'POST'
         data = {'id':$("input[name=delete-id]").val(), 'operation-type':'delete-operation'}
     }
+    if ($(this).attr('name') == 'delete-operation'){
 
+         Swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, remove it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
 
+            $.ajax({
+                type: TYPE,
+             url: "/handle_crud_actions/",
+             data: data,
+             dataType: "json",
+             success: function (response) {
+                   if (response) {
+
+                $('#response').text(response.result);
+
+            }
+                }
+            });
+
+            Swal.fire(
+              'Removed!',
+              'Your item has been removed from Cart.',
+              'success'
+            )
+          }
+        })
+
+    }
+    else{
     $.ajax({
              type: TYPE,
              url: "/handle_crud_actions/",
@@ -114,7 +149,7 @@ $(document).ready(function(){
 
             }
         }
-    });
+    });}
 
   });
 });
