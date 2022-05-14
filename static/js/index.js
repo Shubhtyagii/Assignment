@@ -120,18 +120,25 @@ $(document).ready(function(){
              dataType: "json",
              success: function (response) {
                    if (response) {
+                        $('#response').text(response.result);
+                   }
+                   if (response.flag){
+                   Swal.fire(
+                         'Removed!',
+                        'Your item has been removed from Cart.',
+                        'success'
+                    )}if (response.flag == false ){
+                        Swal.fire(
+                         'Opps!',
+                        'id does not exists!',
+                        'error'
+                    )
+                    }
 
-                $('#response').text(response.result);
-
-            }
                 }
             });
 
-            Swal.fire(
-              'Removed!',
-              'Your item has been removed from Cart.',
-              'success'
-            )
+
           }
         })
 

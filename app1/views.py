@@ -31,6 +31,7 @@ def handle_crud_actions(request):
         This function is used to handle crud operation
         """
     response = {}
+    flag = None
     if request.method == "GET":
         if request.GET.get("operation-type") == "get-operation" and request.is_ajax():
             try:
@@ -40,9 +41,11 @@ def handle_crud_actions(request):
                                      'lastname': user_object.last_name,
                                      'email': user_object.email,
                                      })
+                flag = True
             except:
                 result = request.GET.get("id") + ' ' + 'Id does not exists!'
-            response = {'result': result}
+                flag = False
+            response = {'result': result, 'flag': flag}
     elif request.method == "POST":
         if request.POST.get("operation-type") == "post-operation" and request.is_ajax():
             try:
@@ -56,9 +59,11 @@ def handle_crud_actions(request):
                                      'lastname': user_object.last_name,
                                      'email': user_object.email,
                                      })
+                flag = True
             except:
                 result = 'username and password should be in correct format'
-            response = {'result': result}
+                flag = False
+            response = {'result': result, 'flag': flag}
         elif request.method == "POST":
             if request.POST.get("operation-type") == "put-operation" and request.is_ajax():
 
@@ -83,10 +88,12 @@ def handle_crud_actions(request):
                     user_object.delete()
                     result = json.dumps({'output': 'id ' + request.POST.get("id") + ' ' + 'has been removed '
                                                                                           'successfully'})
-
+                    flag = True
                 except:
-                    result = request.GET.get("id") + ' ' + 'Id does not exists!'
-                response = {'result': result}
+
+                    result = request.POST.get("id") + ' ' + 'Id does not exists!'
+                    flag = False
+                response = {'result': result, 'flag': flag}
     return JsonResponse(response)
 
 
