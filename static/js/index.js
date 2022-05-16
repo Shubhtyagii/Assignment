@@ -1,11 +1,3 @@
-//$(document).ready(function(){
-//    $('.form-field2').on('click',function(){
-//        alert('lldf');
-//        validateForm_field('form-field2')
-//    })
-//
-//
-//});
 
 $(document).ready(function(){
     $("#form1").hide();
@@ -173,21 +165,6 @@ function validateForm(name) {
                     });
                     return valid
                 }
-//
-//
-//function validateForm_field(name) {
-
-//                    var valid = true;
-//                    $('.'+name).each(function () {
-//                        if ($(this).val() !== '') {
-//                            $(this).css({"border":"2px solid #ced4da"});
-//                            valid = false;
-//
-//                        }
-//                    });
-//                    return valid
-//                }
-
 
 
 
@@ -218,12 +195,14 @@ $('.page-link').on('click',function(){
                  $('.next-button-link').attr('value',resp.next_value);
                }else{
                  $('.next_button').addClass('disabled');
+                 $('.next_button').addClass('cursor-not-allowed');
                }
                if (resp.Previous){
                  $('.previous_button').removeClass('disabled');
                  $('.previous-button-link').attr('value',resp.previous_value);
                }else{
                  $('.previous_button').addClass('disabled');
+                 $('.previous_button').addClass('cursor-not-allowed');
                }
             },
         }); //

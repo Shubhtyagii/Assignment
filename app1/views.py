@@ -15,7 +15,7 @@ def index(request):
      """
     user_list = User.objects.all().order_by('id')
     page = request.GET.get('page', 1)
-    paginator = Paginator(user_list, 2)
+    paginator = Paginator(user_list, 4)
     try:
         users = paginator.page(page)
 
@@ -107,7 +107,7 @@ def loader(request):
     previous_value = None
     user_list = User.objects.all().order_by('id')
     page = request.GET.get('page', 1)
-    paginator = Paginator(user_list, 2)
+    paginator = Paginator(user_list, 4)
     try:
         users = list(paginator.page(page).object_list.values())
         if paginator.page(page).has_next():
