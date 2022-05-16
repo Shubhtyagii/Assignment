@@ -62,11 +62,17 @@ $(document).ready(function(){
     }
     else if (($(this).attr('name')) == 'post-operation'){
         var result = validateForm('form-field2')
+        var email = isEmail($("input[name=post-email]").val())
         if (result == true){
-            TYPE = 'POST'
-            data = {'username':$("input[name=post-username]").val(),'firstname':$("input[name=post-firstname]").val(),
-            'lastname':$("input[name=post-lastname]").val(),'email':$("input[name=post-email]").val(),
-             'password':$("input[name=post-password]").val(),'operation-type':'post-operation'}
+            if (isEmail($("input[name=post-email]").val())){
+                TYPE = 'POST'
+                data = {'username':$("input[name=post-username]").val(),'firstname':$("input[name=post-firstname]").val(),
+                'lastname':$("input[name=post-lastname]").val(),'email':$("input[name=post-email]").val(),
+                 'password':$("input[name=post-password]").val(),'operation-type':'post-operation'}
+            }else{
+                $('#response').text("Email not in proper format: eg. admin@gmail.com");
+                return false;
+            }
          }
          else{
             return false
@@ -113,11 +119,12 @@ $(document).ready(function(){
              success: function (response) {
                    if (response) {
                         $('#response').text(response.result);
+                        $('.form-control').val("");
                    }
                    if (response.flag){
                    Swal.fire(
                          'Removed!',
-                        'Your item has been removed from Cart.',
+                        'removed successfully',
                         'success'
                     )}if (response.flag == false ){
                         Swal.fire(
@@ -145,6 +152,7 @@ $(document).ready(function(){
             if (response) {
 
                 $('#response').text(response.result);
+                $('.form-control').val("");
 
             }
         }
@@ -169,10 +177,10 @@ function validateForm(name) {
 
 
 $(document).ready(function(){
-$('.page-link').on('click',function(){
-    var page = $(this).attr('value');
+    $('.page-link').on('click',function(){
+        var page = $(this).attr('value');
 
-    // ajax
+        // ajax
         $.ajax({
                 type: "GET",
                 url: "/loader/", // name of url
@@ -182,13 +190,12 @@ $('.page-link').on('click',function(){
             success: function (resp) {
                 //loop
                 $('#table_body').html('')
-//                console.log(resp.results)
                $.each(resp.users, function(i, val) {
                  //apending table_body
                 $('#table_body').append('<tr id="tr-{{user.id}}"><td>'+val.id+'</td><td>'+val.username+'</td><td>'+val.first_name+'</td><td>'+val.last_name+'</td><td>'+val.email+'</td></tr>')
                });
-              $('.page-item').removeClass('active')
-              $('#pg-'+page).addClass('active')
+                  $('.page-item').removeClass('active')
+                  $('#pg-'+page).addClass('active')
 
                if (resp.Next){
                  $('.next_button').removeClass('disabled');
@@ -207,7 +214,13 @@ $('.page-link').on('click',function(){
             },
         }); //
 
-});
+    });
 
 
 });
+
+
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}

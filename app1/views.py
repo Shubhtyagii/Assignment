@@ -82,7 +82,7 @@ def handle_crud_actions(request):
                                          'email': user_object.email,
                                          })
                 except:
-                    result = 'username and password should be in correct format'
+                    result = 'ID or Username does not match!'
                 response = {'result': result}
             if request.POST.get("operation-type") == "delete-operation":
                 try:
@@ -120,5 +120,6 @@ def loader(request):
         users = paginator.page(1)
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
-    response = {'users': users,  'Next':Next, 'Previous':Previous,'next_value':next_value,'previous_value':previous_value}
+    response = {'users': users, 'Next': Next, 'Previous': Previous, 'next_value': next_value,
+                'previous_value': previous_value}
     return JsonResponse(response)
