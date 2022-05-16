@@ -8,3 +8,4 @@
 2022-05-16 13:43:53,949  //  <WSGIRequest: GET '/handle_crud_actions/?id=41&operation-type=get-operation'>  //  151
 2022-05-16 13:44:02,597  //  <WSGIRequest: GET '/handle_crud_actions/?id=43&operation-type=get-operation'>  //  151
 2022-05-16 13:44:09,131  //  <WSGIRequest: GET '/handle_crud_actions/?id=24&operation-type=get-operation'>  //  151
+2022-05-16 14:09:35,341  //  <WSGIRequest: GET '/handle_crud_actions/?id=1&operation-type=get-operation'>  //  151

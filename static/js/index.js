@@ -1,5 +1,9 @@
 
 $(document).ready(function(){
+    $(".form-control").click(function (event) {
+        $(this).css({"border":"2px solid #ced4da"});
+    });
+
     $("#form1").hide();
     $("#form2").hide();
     $("#form3").hide();
@@ -71,6 +75,7 @@ $(document).ready(function(){
                  'password':$("input[name=post-password]").val(),'operation-type':'post-operation'}
             }else{
                 $('#response').text("Email not in proper format: eg. admin@gmail.com");
+                $("input[name=post-email]").css({"border":"2px solid red"});
                 return false;
             }
          }
@@ -81,11 +86,16 @@ $(document).ready(function(){
     else if (($(this).attr('name')) == 'put-operation'){
         var result = validateForm('form-field3')
         if (result == true){
-             TYPE = 'POST'
-             data = {'id':$("input[name=put-id]").val(),'username':$("input[name=put-username]").val(),'firstname':$("input[name=put-firstname]").val(),
-            'lastname':$("input[name=put-lastname]").val(),'email':$("input[name=put-email]").val(),
-             'password':$("input[name=put-password]").val(),'operation-type':'put-operation'}
-
+            if (isEmail($("input[name=put-email]").val())){
+                 TYPE = 'POST'
+                 data = {'id':$("input[name=put-id]").val(),'username':$("input[name=put-username]").val(),'firstname':$("input[name=put-firstname]").val(),
+                'lastname':$("input[name=put-lastname]").val(),'email':$("input[name=put-email]").val(),
+                 'password':$("input[name=put-password]").val(),'operation-type':'put-operation'}
+            }else{
+                $('#response').text("Email not in proper format: eg. admin@gmail.com");
+                $("input[name=put-email]").css({"border":"2px solid red"});
+                return false;
+            }
     }else{
         return false
         }
@@ -225,6 +235,3 @@ function isEmail(email) {
   var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   return regex.test(email);
 }
-
-
-

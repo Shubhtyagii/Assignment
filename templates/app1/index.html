@@ -19,7 +19,8 @@
 
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
     <style>
-        .cursor-not-allowed { cursor: not-allowed; }
+<!--        .cursor-not-allowed { cursor: not-allowed; },-->
+        .mark-red {"border":"2px solid red"}
     </style>
 </head>
 <body>
@@ -115,7 +116,7 @@
                                     <button name="post-operation" class="btn btn-primary hit-submit-button">Submit</button>
                             </div>
                             <div id="form3">
-                                    <input type="text" name="put-id" placeholder="id" class="form-control mb-2 form-field3">
+                                    <input type="number" name="put-id" placeholder="id" class="form-control mb-2 form-field3" min="1">
                                     <input type="text" name="put-username" placeholder="username" class="form-control mb-2 form-field3">
                                     <input type="text" name="put-firstname" placeholder="firstname" class="form-control mb-2 form-field3">
                                     <input type="text" name="put-lastname" placeholder="lastname" class="form-control mb-2 form-field3">
