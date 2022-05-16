@@ -129,28 +129,16 @@ import os
 
 LOGGING = {
     'version': 1,
-    'loggers':{
-        'django':{
-            'handlers':['file'],
-            'level':'DEBUG',
-            'propagate': True,
-        }
-    },
-
+    'disable_existing_loggers': False,
     'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': 'error.log',
-            'formatter':'simpleRe',
-        }
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
     },
-    'formatters': {
-        'simpleRe': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style': '{',
-        }
-
-
-}
+    'loggers': {
+        'app1.views': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
 }

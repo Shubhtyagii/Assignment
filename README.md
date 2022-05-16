@@ -19,11 +19,6 @@ Once pip has finished downloading the dependencies:
 
 **_To run the project:_**
 
-Enter into project folder
-
-`(env)$ cd project`
-
-then run server 
 
 `(env)$ python3 manage.py runserver`
 

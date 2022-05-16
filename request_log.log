@@ -1,0 +1,10 @@
+
+2022-05-16 12:47:03,500  //  <WSGIRequest: GET '/handle_crud_actions/?id=1&operation-type=get-operation'>  //  148
+2022-05-16 12:48:03,939  //  /home/admin1/Desktop/shubham/project1/app1/views.py changed, reloading.  //  251
+2022-05-16 13:42:47,156  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  151
+2022-05-16 13:43:13,528  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  151
+2022-05-16 13:43:34,714  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  151
+2022-05-16 13:43:47,530  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  151
+2022-05-16 13:43:53,949  //  <WSGIRequest: GET '/handle_crud_actions/?id=41&operation-type=get-operation'>  //  151
+2022-05-16 13:44:02,597  //  <WSGIRequest: GET '/handle_crud_actions/?id=43&operation-type=get-operation'>  //  151
+2022-05-16 13:44:09,131  //  <WSGIRequest: GET '/handle_crud_actions/?id=24&operation-type=get-operation'>  //  151

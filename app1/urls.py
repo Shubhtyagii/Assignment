@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('handle_crud_actions/', views.handle_crud_actions, name='handle_crud_actions'),
     path('loader/', views.loader, name='loader'),
+    path('log/', views.show_logs, name='show_logs'),
 ]

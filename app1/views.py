@@ -1,4 +1,6 @@
 import json
+from logging import basicConfig, info, DEBUG
+
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
@@ -11,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     """
-        This function is used to get the all user objects
+        This function is used to return  the all user objects list.
      """
     user_list = User.objects.all().order_by('id')
     page = request.GET.get('page', 1)
@@ -30,8 +32,9 @@ def index(request):
 @csrf_exempt
 def handle_crud_actions(request):
     """
-        This function is used to handle crud operation
+        This function is used to handle ajax request for crud operation.
         """
+    logging(request)
     response = {}
     flag = None
     if request.method == "GET":
@@ -66,40 +69,43 @@ def handle_crud_actions(request):
                 result = 'username and password should be in correct format'
                 flag = False
             response = {'result': result, 'flag': flag}
-        elif request.method == "POST":
-            if request.POST.get("operation-type") == "put-operation":
+        elif request.POST.get("operation-type") == "put-operation":
 
-                try:
-                    user_object = User.objects.get(id=request.POST.get("id"))
-                    user_object.username = request.POST.get("username")
-                    user_object.first_name = request.POST.get("firstname")
-                    user_object.last_name = request.POST.get("lastname")
-                    user_object.email = request.POST.get("email")
-                    user_object.save()
-                    result = json.dumps({'username': user_object.username,
-                                         'firstname': user_object.first_name,
-                                         'lastname': user_object.last_name,
-                                         'email': user_object.email,
-                                         })
-                except:
-                    result = 'ID or Username does not match!'
-                response = {'result': result}
-            if request.POST.get("operation-type") == "delete-operation":
-                try:
-                    user_object = User.objects.get(id=request.POST.get("id"))
-                    user_object.delete()
-                    result = json.dumps({'output': 'id ' + request.POST.get("id") + ' ' + 'has been removed '
-                                                                                          'successfully'})
-                    flag = True
-                except:
+            try:
+                user_object = User.objects.get(id=request.POST.get("id"))
+                user_object.username = request.POST.get("username")
+                user_object.first_name = request.POST.get("firstname")
+                user_object.last_name = request.POST.get("lastname")
+                user_object.email = request.POST.get("email")
+                user_object.save()
+                result = json.dumps({'username': user_object.username,
+                                     'firstname': user_object.first_name,
+                                     'lastname': user_object.last_name,
+                                     'email': user_object.email,
+                                     })
+            except:
+                result = 'ID or Username does not match!'
+            response = {'result': result}
+        elif request.POST.get("operation-type") == "delete-operation":
+            try:
+                user_object = User.objects.get(id=request.POST.get("id"))
+                user_object.delete()
+                result = json.dumps({'output': 'id ' + request.POST.get("id") + ' ' + 'has been removed '
+                                                                                      'successfully'})
+                flag = True
+            except:
 
-                    result = request.POST.get("id") + ' ' + 'Id does not exists!'
-                    flag = False
-                response = {'result': result, 'flag': flag}
+                result = request.POST.get("id") + ' ' + 'Id does not exists!'
+                flag = False
+            response = {'result': result, 'flag': flag}
+
     return JsonResponse(response)
 
 
 def loader(request):
+    """
+        This function is used to handle pagination ajax request.
+    """
     response = {}
     Next = False
     Previous = False
@@ -123,3 +129,23 @@ def loader(request):
     response = {'users': users, 'Next': Next, 'Previous': Previous, 'next_value': next_value,
                 'previous_value': previous_value}
     return JsonResponse(response)
+
+
+def show_logs(request):
+    """
+    This function extract log information from log_files.log and render
+    log information to the template.
+    :param request: object to pass the state. When page/url is requested by user
+    """
+    file1 = open('request_log.log', 'r')
+    log_value = file1.readlines()
+    return render(request, 'app1/log.html', {'log': log_value})
+
+
+def logging(logs):
+    """
+    This function creates log files.
+    """
+    LOG_FORMAT = '%(asctime)s  //  %(message)s  //  %(lineno)d'
+    basicConfig(filename='request_log.log', level=DEBUG, filemode='a', format=LOG_FORMAT)
+    info('' + str(logs))
