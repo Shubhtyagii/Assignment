@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -107,27 +108,35 @@ def loader(request):
         This function is used to handle pagination ajax request.
     """
     response = {}
-    Next = False
-    Previous = False
-    next_value = None
-    previous_value = None
+    # Next = False
+    # Previous = False
+    # next_value = None
+    # previous_value = None
     user_list = User.objects.all().order_by('id')
     page = request.GET.get('page', 1)
+    print('pageee',page)
     paginator = Paginator(user_list, 4)
-    try:
-        users = list(paginator.page(page).object_list.values())
-        if paginator.page(page).has_next():
-            Next = True
-            next_value = paginator.page(page).next_page_number()
-        if paginator.page(page).has_previous():
-            Previous = True
-            previous_value = paginator.page(page).previous_page_number()
-    except PageNotAnInteger:
-        users = paginator.page(1)
-    except EmptyPage:
-        users = paginator.page(paginator.num_pages)
-    response = {'users': users, 'Next': Next, 'Previous': Previous, 'next_value': next_value,
-                'previous_value': previous_value}
+    # testing code start
+    users = paginator.page(page)
+    context = {'users': users}
+    x = render_to_string('app1/test.html', context)
+    # print(x)
+    response = {'x': x}
+    # testing code end
+    # try:
+    #     users = list(paginator.page(page).object_list.values('id', 'username', 'email', 'first_name', 'last_name'))
+    #     if paginator.page(page).has_next():
+    #         Next = True
+    #         next_value = paginator.page(page).next_page_number()
+    #     if paginator.page(page).has_previous():
+    #         Previous = True
+    #         previous_value = paginator.page(page).previous_page_number()
+    # except PageNotAnInteger:
+    #     users = paginator.page(1)
+    # except EmptyPage:
+    #     users = paginator.page(paginator.num_pages)
+    # response = {'users': users, 'Next': Next, 'Previous': Previous, 'next_value': next_value,
+    #             'previous_value': previous_value}
     return JsonResponse(response)
 
 

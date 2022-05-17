@@ -189,6 +189,7 @@ function validateForm(name) {
 $(document).ready(function(){
 
     $('.page-link').on('click',function(){
+
         var page = $(this).attr('value');
 
         // ajax
@@ -199,31 +200,34 @@ $(document).ready(function(){
                 page : page, //page_number
             },
             success: function (resp) {
-                //loop
-                $('#table_body').html('')
-               $.each(resp.users, function(i, val) {
-                 //apending table_body
-                $('#table_body').append('<tr id="tr-{{user.id}}"><td>'+val.id+'</td><td>'+val.username+'</td><td>'+val.first_name+'</td><td>'+val.last_name+'</td><td>'+val.email+'</td></tr>')
-               });
-                  $('.page-item').removeClass('active')
-                  $('#pg-'+page).addClass('active')
 
-               if (resp.Next){
-                 $('.next_button').removeClass('disabled');
-                 $('.next-button-link').attr('value',resp.next_value);
-               }else{
-                 $('.next_button').addClass('disabled');
-                 $('.next_button').addClass('cursor-not-allowed');
-               }
-               if (resp.Previous){
-                 $('.previous_button').removeClass('disabled');
-                 $('.previous-button-link').attr('value',resp.previous_value);
-               }else{
-                 $('.previous_button').addClass('disabled');
-                 $('.previous_button').addClass('cursor-not-allowed');
-               }
+                //$("#data_table_div").html('');
+                $("#data_table_div").html(resp.x);
+                //loop
+//                $('#table_body').html('')
+//               $.each(resp.users, function(i, val) {
+//                 //apending table_body
+//                $('#table_body').append('<tr id="tr-{{user.id}}"><td>'+val.id+'</td><td>'+val.username+'</td><td>'+val.first_name+'</td><td>'+val.last_name+'</td><td>'+val.email+'</td></tr>')
+//               });
+//                  $('.page-item').removeClass('active')
+//                  $('#pg-'+page).addClass('active')
+//
+//               if (resp.Next){
+//                 $('.next_button').removeClass('disabled');
+//                 $('.next-button-link').attr('value',resp.next_value);
+//               }else{
+//                 $('.next_button').addClass('disabled');
+//                 $('.next_button').addClass('cursor-not-allowed');
+//               }
+//               if (resp.Previous){
+//                 $('.previous_button').removeClass('disabled');
+//                 $('.previous-button-link').attr('value',resp.previous_value);
+//               }else{
+//                 $('.previous_button').addClass('disabled');
+//                 $('.previous_button').addClass('cursor-not-allowed');
+//               }
             },
-        }); //
+        });
 
     });
 

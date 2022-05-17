@@ -1,0 +1,98 @@
+<table class="table table-hover m-3 table-bordered">
+    <thead>
+      <tr>
+        <th>user Id</th>
+        <th>Username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="table_body">
+
+        {% for user in users %}
+          <tr id="tr-{{user.id}}">
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+          </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+<!-- Right-aligned -->
+    {% if users.has_other_pages %}
+ <ul class="pagination justify-content-end" id="pagination_list">
+     {% if users.has_previous %}
+    <li class="page-item previous_button" id=''><a class="page-link previous-button-link" value ="{{ users.previous_page_number }}" role="button">Previous</a></li>
+     {% else %}
+      <li class="disabled page-item previous_button cursor-not-allowed"><a class="page-link previous-button-link"  role="button">Previous</a></li>
+    {% endif %}
+
+    {% for i in users.paginator.page_range %}
+        {% if users.number == i %}
+        <li class="page-item active" ><a class="page-link" value="{{ i }}"  role="button">{{ i }}</a></li>
+        {% else %}
+            <li class="page-item" ><a class="page-link" value="{{ i }}" role="button">{{ i }}</a></li>
+        {% endif %}
+     {% endfor %}
+    {% if users.has_next %}
+        <li class="page-item next_button"><a class="page-link next-button-link" value="{{ users.next_page_number }}" role="button">Next</a></li>
+        {% else %}
+        <li class="disabled page-item next_button cursor-not-allowed"><a class="page-link next-button-link"  role="button">Next</a></li>
+    {% endif %}
+  </ul>
+    {% endif %}
+
+
+<script>$(document).ready(function(){
+
+    $('.page-link').on('click',function(){
+
+        var page = $(this).attr('value');
+
+        // ajax
+        $.ajax({
+                type: "GET",
+                url: "/loader/", // name of url
+                data : {
+                page : page, //page_number
+            },
+            success: function (resp) {
+
+                //$("#data_table_div").html('');
+                $("#data_table_div").html(resp.x);
+                //loop
+//                $('#table_body').html('')
+//               $.each(resp.users, function(i, val) {
+//                 //apending table_body
+//                $('#table_body').append('<tr id="tr-{{user.id}}"><td>'+val.id+'</td><td>'+val.username+'</td><td>'+val.first_name+'</td><td>'+val.last_name+'</td><td>'+val.email+'</td></tr>')
+//               });
+//                  $('.page-item').removeClass('active')
+//                  $('#pg-'+page).addClass('active')
+//
+//               if (resp.Next){
+//                 $('.next_button').removeClass('disabled');
+//                 $('.next-button-link').attr('value',resp.next_value);
+//               }else{
+//                 $('.next_button').addClass('disabled');
+//                 $('.next_button').addClass('cursor-not-allowed');
+//               }
+//               if (resp.Previous){
+//                 $('.previous_button').removeClass('disabled');
+//                 $('.previous-button-link').attr('value',resp.previous_value);
+//               }else{
+//                 $('.previous_button').addClass('disabled');
+//                 $('.previous_button').addClass('cursor-not-allowed');
+//               }
+            },
+        });
+
+    });
+
+
+});
+</script>

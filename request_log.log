@@ -9,3 +9,99 @@
 2022-05-16 13:44:02,597  //  <WSGIRequest: GET '/handle_crud_actions/?id=43&operation-type=get-operation'>  //  151
 2022-05-16 13:44:09,131  //  <WSGIRequest: GET '/handle_crud_actions/?id=24&operation-type=get-operation'>  //  151
 2022-05-16 14:09:35,341  //  <WSGIRequest: GET '/handle_crud_actions/?id=1&operation-type=get-operation'>  //  151
+2022-05-17 11:04:16,126  //  <WSGIRequest: GET '/handle_crud_actions/?id=1&operation-type=get-operation'>  //  162
+2022-05-17 11:04:31,824  //  Not Found: /favicon.ico  //  230
+2022-05-17 11:04:32,704  //  Not Found: /favicon.ico  //  230
+2022-05-17 11:04:33,615  //  Not Found: /favicon.ico  //  230
+2022-05-17 11:04:36,157  //  <WSGIRequest: GET '/handle_crud_actions/?id=1&operation-type=get-operation'>  //  162
+2022-05-17 11:04:45,811  //  Not Found: /favicon.ico  //  230
+2022-05-17 11:04:46,489  //  Not Found: /favicon.ico  //  230
+2022-05-17 11:05:05,281  //  /home/admin1/Desktop/shubham/project1/app1/views.py changed, reloading.  //  251
+2022-05-17 12:56:56,976  //  <WSGIRequest: GET '/handle_crud_actions/?id=1&operation-type=get-operation'>  //  160
+2022-05-17 12:57:10,763  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 12:57:48,874  //  Internal Server Error: /loader/  //  230
+Traceback (most recent call last):
+  File "/home/admin1/Desktop/shubham/env/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/admin1/Desktop/shubham/env/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/admin1/Desktop/shubham/project1/app1/views.py", line 140, in loader
+    return JsonResponse(response)
+  File "/home/admin1/Desktop/shubham/env/lib/python3.6/site-packages/django/http/response.py", line 603, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "/usr/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/home/admin1/Desktop/shubham/env/lib/python3.6/site-packages/django/core/serializers/json.py", line 105, in default
+    return super().default(o)
+  File "/usr/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2022-05-17 12:57:49,802  //  Internal Server Error: /loader/  //  230
+Traceback (most recent call last):
+  File "/home/admin1/Desktop/shubham/env/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/admin1/Desktop/shubham/env/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/admin1/Desktop/shubham/project1/app1/views.py", line 140, in loader
+    return JsonResponse(response)
+  File "/home/admin1/Desktop/shubham/env/lib/python3.6/site-packages/django/http/response.py", line 603, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "/usr/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/home/admin1/Desktop/shubham/env/lib/python3.6/site-packages/django/core/serializers/json.py", line 105, in default
+    return super().default(o)
+  File "/usr/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Page' is not JSON serializable
+2022-05-17 17:00:29,062  //  /home/admin1/Desktop/shubham/project1/app1/views.py changed, reloading.  //  251
+2022-05-17 17:20:50,120  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,123  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,126  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,129  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,148  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,153  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,404  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,416  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,429  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,436  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:20:50,437  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,498  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,501  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,505  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,508  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,511  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,515  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,799  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,805  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,815  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,820  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:08,833  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:21:48,616  //  <WSGIRequest: GET '/handle_crud_actions/?id=25&operation-type=get-operation'>  //  160
+2022-05-17 17:22:20,094  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:24:03,444  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:24:45,327  //  <WSGIRequest: GET '/handle_crud_actions/?id=4&operation-type=get-operation'>  //  160
+2022-05-17 17:24:59,394  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:25:30,519  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 17:27:17,166  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:27:57,807  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:30:27,565  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:30:28,596  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:30:48,151  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:30:48,442  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:30:48,751  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:30:49,407  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:33:27,215  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:43:19,010  //  Not Found: /favicon.ico  //  230
+2022-05-17 17:49:19,680  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
+2022-05-17 18:05:56,789  //  Not Found: /favicon.ico  //  230
+2022-05-17 18:12:04,151  //  Not Found: /favicon.ico  //  230
+2022-05-17 18:12:04,338  //  Not Found: /favicon.ico  //  230
+2022-05-17 18:13:08,151  //  <WSGIRequest: POST '/handle_crud_actions/'>  //  160
